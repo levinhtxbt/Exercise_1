@@ -21,6 +21,8 @@
             android:label="Step 2" />
         <activity android:name=".SignUpStep3Activity"
             android:label="Step 3"/>
+        <activity android:name=".UserSignUpFragmentActivity"
+            android:label="Use Fragment"/>
     </application>
 
 </manifest>

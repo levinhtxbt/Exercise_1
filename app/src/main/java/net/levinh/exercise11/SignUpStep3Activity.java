@@ -12,25 +12,26 @@ import net.levinh.exercise11.Model.Info;
 
 public class SignUpStep3Activity extends AppCompatActivity {
 
-    Button btnSendMail,btnRestart;
+    Button btnSendMail, btnRestart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_step3);
-        btnSendMail = (Button)findViewById(R.id.btnSendMail);
-        btnRestart = (Button)findViewById(R.id.btnRestart);
+        btnSendMail = (Button) findViewById(R.id.btnSendMail);
+        btnRestart = (Button) findViewById(R.id.btnRestart);
 
-        Bundle b = getIntent().getBundleExtra("data");
-        final Info info = (Info)b.getSerializable("info");
+        Bundle b = getIntent().getBundleExtra(MainActivity.DATA);
+        final Info info = (Info) b.getSerializable(MainActivity.INFO);
 
         btnSendMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]  { info.getEmail().toString() } );
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{info.getEmail().toString()});
                 email.putExtra(Intent.EXTRA_SUBJECT, "User's registration info");
-                String message = info.getFirstName().toString()+"_"+info.getLastName().toString()
-                        +"\n"+info.getPhoneNumber().toString()+"\n"+info.getSalary()+" dollars";
+                String message = info.getFirstName().toString() + "_" + info.getLastName().toString()
+                        + "\n" + info.getPhoneNumber().toString() + "\n" + info.getSalary() + " dollars";
                 email.putExtra(Intent.EXTRA_TEXT, message);
                 email.setType("message/rfc822");
                 startActivity(Intent.createChooser(email, "Choose an Email app :"));
@@ -40,8 +41,8 @@ public class SignUpStep3Activity extends AppCompatActivity {
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( SignUpStep3Activity.this, MainActivity.class );
-                intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                Intent intent = new Intent(SignUpStep3Activity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

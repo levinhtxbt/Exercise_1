@@ -7,12 +7,12 @@ import java.util.ArrayList;
  * Created by Levin on 25/03/2016.
  */
 public class Info implements Serializable {
-    String FirstName;
-    String LastName;
-    String Email;
-    String PhoneNumber;
-    Boolean Gender;
-    long Salary;
+    String firstName;
+    String lastName;
+    String email;
+    String phoneNumber;
+    boolean gender;
+    long salary;
     ArrayList<String> arrSport;
 
     public Info() {
@@ -20,51 +20,51 @@ public class Info implements Serializable {
     }
 
     public long getSalary() {
-        return Salary;
+        return salary;
     }
 
     public void setSalary(long salary) {
-        Salary = salary;
+        this.salary = salary;
     }
 
-    public Boolean getGender() {
-        return Gender;
+    public boolean getGender() {
+        return gender;
     }
 
-    public void setGender(Boolean gender) {
-        Gender = gender;
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public void  addSport(String sport)
