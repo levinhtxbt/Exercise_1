@@ -1,6 +1,7 @@
 package net.levinh.exercise11.fragment;
 
 import android.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,7 +23,7 @@ public class Step2Fragment extends Step1Fragment {
 
     @Override
     public int getIDFragment() {
-        return R.layout.fragment_step_2;
+        return R.layout.activity_sign_up_step2;
     }
 
     @Override
@@ -59,6 +60,12 @@ public class Step2Fragment extends Step1Fragment {
         btnDone.setOnClickListener(this);
     }
 
+    @Override
+    public boolean putInfor() {
+        mInfo.setSalary(seekbar.getProgress());
+        return true;
+    }
+
     public Boolean isChecked() {
         if (chkFootball.isChecked() || chkTennis.isChecked() ||
                 chkPingpong.isChecked() || chkSwimming.isChecked() ||
@@ -70,7 +77,13 @@ public class Step2Fragment extends Step1Fragment {
 
     @Override
     public void onClick(View v) {
-        if (isChecked())
-            ((UserSignUpFragmentActivity) getActivity()).addFragment(new Step3Fragment());
+        if (v.getId() == R.id.btnDone) {
+            if (isChecked()) {
+                putInfor();
+                ((UserSignUpFragmentActivity) getActivity()).addFragment(new Step3Fragment());
+            }
+        }
+
+
     }
 }

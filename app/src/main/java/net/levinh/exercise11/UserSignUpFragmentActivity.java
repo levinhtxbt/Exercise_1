@@ -13,15 +13,23 @@ import net.levinh.exercise11.fragment.Step1Fragment;
 public class UserSignUpFragmentActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_sign_up_fragment);
         fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.container_fragment,new Step1Fragment()).commit();
+        fragmentManager.beginTransaction().add(R.id.container_fragment, new Step1Fragment()).commit();
     }
 
-    public  void addFragment(Fragment fragment){
-        fragmentManager.beginTransaction().replace(R.id.container_fragment,fragment).addToBackStack(null).commit();
+    public void addFragment(Fragment fragment) {
+        fragmentManager.beginTransaction().replace(R.id.container_fragment, fragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() > 0)
+            fragmentManager.popBackStack();
+        else finish();
     }
 }

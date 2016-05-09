@@ -24,9 +24,7 @@ import net.levinh.exercise11.UserSignUpFragmentActivity;
  * Created by Levin on 01/05/2016.
  */
 public class Step1Fragment extends Fragment implements View.OnClickListener{
-
-    Info mInfo;
-
+    static Info mInfo;
     EditText txtFirstName, txtLastName, txtEmail, txtPhoneNumber;
     RadioGroup rdoGroup;
     RadioButton rdoMale, rdoFemale;
@@ -37,12 +35,11 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(getIDFragment(), container, false);
         initView(fragmentView);
-        return inflater.inflate(getIDFragment(), container, false);
-
+        return fragmentView;
     }
 
     public int getIDFragment() {
-        return R.layout.fragment_step_1;
+        return R.layout.activity_main;
     }
 
     public void initView(View view) {
@@ -97,10 +94,13 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Log.d("Step 1","Click on button Next");
-        if(putInfor())
-        {
-            ((UserSignUpFragmentActivity)getActivity()).addFragment(new Step2Fragment());
+        if(v.getId()== R.id.btnNext){
+//            Log.d("Step 1","Click on button Next");
+            if(putInfor())
+            {
+                ((UserSignUpFragmentActivity)getActivity()).addFragment(new Step2Fragment());
+            }
         }
+
     }
 }
