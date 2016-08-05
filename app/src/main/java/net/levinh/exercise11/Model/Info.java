@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * Created by Levin on 25/03/2016.
  */
 public class Info implements Serializable {
+
     String firstName;
     String lastName;
     String email;
@@ -14,6 +15,7 @@ public class Info implements Serializable {
     boolean gender;
     long salary;
     ArrayList<String> arrSport;
+    String imageProfile;
 
     public Info() {
         arrSport = new ArrayList<String>();
@@ -71,8 +73,20 @@ public class Info implements Serializable {
     {
         arrSport.add(sport);
     }
+
+    public void setArrSport(ArrayList<String> arr){
+        this.arrSport = arr;
+    }
     public ArrayList<String> getArrSport()
     {
         return  arrSport;
+    }
+
+    public String getImageProfile() {
+        return imageProfile;
+    }
+
+    public void setImageProfile(String imageProfile) {
+        this.imageProfile = imageProfile;
     }
 }

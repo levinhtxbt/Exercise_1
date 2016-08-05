@@ -1,42 +1,59 @@
 package net.levinh.exercise11.fragment;
 
-import android.app.Fragment;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import net.levinh.exercise11.Model.Info;
 import net.levinh.exercise11.R;
-import net.levinh.exercise11.UserSignUpFragmentActivity;
+import net.levinh.exercise11.Activity.UserSignUpFragmentActivity;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Levin on 01/05/2016.
  */
-public class Step2Fragment extends Step1Fragment {
+public class Step2Fragment extends BaseFragment {
+    Info mInfo;
 
-    public SeekBar seekbar;
-    public TextView lblResult;
+    @Bind(R.id.seekbar)
+    SeekBar seekbar;
+    @Bind(R.id.lblResult)
+    TextView lblResult;
+    @Bind(R.id.btnDone)
     Button btnDone;
-    public CheckBox chkFootball, chkTennis, chkPingpong, chkSwimming, chkVolleyball, chkBasketball;
+    @Bind(R.id.chkFootball)
+    CheckBox chkFootball;
+    @Bind(R.id.chkTennis)
+    CheckBox chkTennis;
+    @Bind(R.id.chkPingPong)
+    CheckBox chkPingpong;
+    @Bind(R.id.chkSwimming)
+    CheckBox chkSwimming;
+    @Bind(R.id.chkVolleyball)
+    CheckBox chkVolleyball;
+    @Bind(R.id.chkBasketball)
+    CheckBox chkBasketball;
 
     @Override
-    public int getIDFragment() {
+    protected int getFragmentID() {
         return R.layout.activity_sign_up_step2;
     }
 
+
+
     @Override
-    public void initView(View view) {
-        seekbar = (SeekBar) view.findViewById(R.id.seekbar);
-        lblResult = (TextView) view.findViewById(R.id.lblResult);
-        btnDone = (Button) view.findViewById(R.id.btnDone);
-        chkFootball = (CheckBox) view.findViewById(R.id.chkFootball);
-        chkTennis = (CheckBox) view.findViewById(R.id.chkTennis);
-        chkPingpong = (CheckBox) view.findViewById(R.id.chkPingPong);
-        chkSwimming = (CheckBox) view.findViewById(R.id.chkSwimming);
-        chkVolleyball = (CheckBox) view.findViewById(R.id.chkVolleyball);
-        chkBasketball = (CheckBox) view.findViewById(R.id.chkBasketball);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this,view);
+        Bundle bundle = getArguments();
+        mInfo = (Info) bundle.getSerializable(UserSignUpFragmentActivity.INFO_DATA);
+
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int step = 100;
 
@@ -57,13 +74,28 @@ public class Step2Fragment extends Step1Fragment {
 
             }
         });
-        btnDone.setOnClickListener(this);
     }
 
-    @Override
+    @OnClick(R.id.btnDone)
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnDone) {
+            if (isChecked()) {
+                putInfor();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(UserSignUpFragmentActivity.INFO_DATA, mInfo);
+                Step3Fragment fragment = new Step3Fragment();
+                fragment.setArguments(bundle);
+                ((UserSignUpFragmentActivity) getActivity()).addFragment(fragment);
+            }
+        }
+    }
+
     public boolean putInfor() {
-        mInfo.setSalary(seekbar.getProgress());
-        return true;
+        if (mInfo != null) {
+            mInfo.setSalary(seekbar.getProgress());
+            return true;
+        }
+        return false;
     }
 
     public Boolean isChecked() {
@@ -72,18 +104,11 @@ public class Step2Fragment extends Step1Fragment {
                 chkVolleyball.isChecked() || chkBasketball.isChecked())
             return true;
         return false;
-
     }
 
     @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btnDone) {
-            if (isChecked()) {
-                putInfor();
-                ((UserSignUpFragmentActivity) getActivity()).addFragment(new Step3Fragment());
-            }
-        }
-
-
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

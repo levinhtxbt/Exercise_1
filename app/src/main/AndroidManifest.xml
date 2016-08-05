@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.levinh.exercise11">
+    <uses-sdk
+        android:minSdkVersion="20"
+        android:targetSdkVersion="20"
+        android:maxSdkVersion="23"/>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.SignUpStep1Activity"
             android:label="Step 1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,11 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpStep2Activity"
+            android:name=".Activity.SignUpStep2Activity"
             android:label="Step 2" />
-        <activity android:name=".SignUpStep3Activity"
+        <activity android:name=".Activity.SignUpStep3Activity"
             android:label="Step 3"/>
-        <activity android:name=".UserSignUpFragmentActivity"
+        <activity android:name=".Activity.UserSignUpFragmentActivity"
             android:label="Use Fragment"/>
     </application>
 
