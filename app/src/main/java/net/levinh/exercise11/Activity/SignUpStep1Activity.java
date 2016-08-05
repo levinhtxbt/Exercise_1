@@ -113,7 +113,6 @@ public class SignUpStep1Activity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this,"Cannot open camera!",Toast.LENGTH_LONG).show();
         }
-
     }
 
     public boolean isValid() {
@@ -140,8 +139,6 @@ public class SignUpStep1Activity extends AppCompatActivity {
         }
         return flag;
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,7 +199,7 @@ public class SignUpStep1Activity extends AppCompatActivity {
         bmOptions.inPurgeable = true;
 		/* Decode the JPEG file into a Bitmap */
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath,bmOptions);
-        bitmap = BitmapUtils.getResizedBitmapWithRatioNewWidth(bitmap, targetW);
+        bitmap = BitmapUtils.getResizedBitmapWithRatioNewWidth(bitmap, 400);
         //Log.d(TAG, "setPic: " + mCurrentPhotoPath);
         /* Associate the Bitmap to the ImageView */
         imgViewProfile.setImageBitmap(bitmap);
